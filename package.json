@@ -1,0 +1,34 @@
+{
+  "name": "ng-tailwindcss",
+  "version": "1.0.0",
+  "preferGlobal": true,
+  "bin": {
+    "ng-tailwindcss": "./index.js"
+  },
+  "description": "A helper module for integrating tailwindcss with angular-cli projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tehpsalmist/ng-tailwindcss.git"
+  },
+  "keywords": [
+    "angular",
+    "tailwind",
+    "css",
+    "angular-cli",
+    "cli"
+  ],
+  "author": "Ben Steward <bstewardcodes@gmail.com> (https://tehpsalmist.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tehpsalmist/ng-tailwindcss/issues"
+  },
+  "homepage": "https://github.com/tehpsalmist/ng-tailwindcss#readme",
+  "dependencies": {
+    "chokidar": "^2.0.3",
+    "minimist": "^1.2.0"
+  }
+}
