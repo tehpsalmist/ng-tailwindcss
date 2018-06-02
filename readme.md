@@ -1,7 +1,31 @@
 # ng-tailwindcss
 ### A helper module for integrating tailwindcss with angular-cli projects with as little pain as possible
 
-## Installation
+## Quick and Dirty (for new projects only!)
+
+After starting your new ng-cli project:d
+
+  ```
+  npm i ng-tailwindcss -g
+  npm i tailwindcss -D
+  ./node_modules/.bin/tailwind init
+  ng-tailwindcss configure
+  touch src/tailwind.css 
+  ```
+
+Put all your tailwind imports in `src/tailwind.css` and adjust these scripts in your package.json:
+
+  ```
+  scripts: {
+    "prestart": "ng-tailwindcss build",
+    "start": "ng serve & ng-tailwindcss watch",
+    "build": "ng-tailwindcss build && ng build"
+  }
+  ```
+
+Run `npm start` and let the wind fill your wings!
+
+## Full Installation Guide
 
 1. Install globally:
   `npm i ng-tailwindcss -g`
@@ -13,30 +37,39 @@
 A recommendation for new projects (no prior stylesheet changes) is to `touch src/tailwind.css` and use that file for all global styles and [component classes](https://tailwindcss.com/docs/extracting-components).
 
 4. Configure your tailwind source/destination/config files by running:
-  `ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --dest ./path/to/whatever-you-call-it.css`
-  This will result in an ng-tailwindcss.js file at your project root:
+
+`ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --dest ./path/to/whatever-you-call-it.css`
+
+  This will result in an `ng-tailwindcss.js` file at your project's root:
+
   ```
   module.exports = {
     configFile: './path/to/whatever-you-named-tailwind-config.js',
     sourceCSS: './path/to/your-tailwind-source.css',
     destCSS: './path/to/whatever-you-call-it.css'
   }
+  ```
+
   _See Configuration Below for More Details and Implications for Existing Angular Projects_
 
 5. Adjust these scripts in your package.json:
+
   ```
   scripts: {
-    "prestart": "ng-tailwindcss",
-    "start": "ng serve & ng-tailwindcss",
-    "build": "ng-tailwindcss && ng build"
+    "prestart": "ng-tailwindcss build",
+    "start": "ng serve & ng-tailwindcss watch",
+    "build": "ng-tailwindcss build && ng build"
   }
   ```
+
   Now using `npm start` for your development server will ensure your tailwind files are being watched and built with your project, and you can still rely on the angular-cli for everything else (no `ng eject`! yay!).
 
 6. Keep calm and angular on.
 
 ## Configuration
-_*Important*: The default config (running ng-tailwindcss with no flags) will assume a configuration of:_
+The ng-tailwindcss.js file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configFile` property, and retain the original values for `sourceCSS` and `destCSS`).
+
+_*Important*: The default config (running_ `ng-tailwindcss configure` _with no arguments) will assume a configuration of:_
   ```
   {
     configFile: './tailwind.js',
@@ -44,4 +77,5 @@ _*Important*: The default config (running ng-tailwindcss with no flags) will ass
     destCSS: './src/styles.css'
   }
   ```
-It should be noted that such a configuration will overwrite the
+
+It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably `destCSS`, but more complicated scenarios are certainly possible--be safe out there!).
