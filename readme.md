@@ -3,7 +3,7 @@
 
 ## Quick and Dirty (for new projects only!)
 
-After starting your new ng-cli project:
+After starting your new angular-cli project run these commands:
 
   ```
   npm i ng-tailwindcss -g
@@ -13,7 +13,7 @@ After starting your new ng-cli project:
   touch src/tailwind.css 
   ```
 
-Put all your tailwind imports in `src/tailwind.css` and adjust these scripts in your package.json:
+Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use-tailwind-in-your-css) in `src/tailwind.css` and add/adjust these scripts in your package.json:
 
   ```
   scripts: {
@@ -42,12 +42,16 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
   ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/whatever-you-call-it.css
   ```
 
-You can alias your argument flags thus:
+You can alias your commands or argument flags thus:
 
   ```
-  --config => -c
-  --source => -s
-  --output => -o
+  configure => c
+    --config => -c
+    --source => -s
+    --output => -o
+
+  watch => w
+  build => b
   ```
 
 This will result in an `ng-tailwind.js` file at your project's root:
@@ -91,3 +95,7 @@ _*Important*: The default config (running_ `ng-tailwindcss configure` _with no a
   ```
 
 It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably your `outputCSS`, but more complicated scenarios are certainly possible--be safe out there!).
+
+## Contributing
+
+Yes, please.
