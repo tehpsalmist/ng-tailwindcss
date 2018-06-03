@@ -1,18 +1,33 @@
 #!/usr/bin/env node
-const chokidar = require('chokidar')
+
 const child = require('child_process')
-const minimist = require('minimist')
-const argv = minimist(process.argv)
+const program = require('commander')
+// const watch = require('./lib/watch')
+const build = require('./lib/build')
+const configure = require('./lib/configure')
 
-const configFile = argv.config || argv.c || './tailwind.js'
-const sourceCSS = argv.source || argv.s || './src/tailwind.css'
-const destCSS = argv.dest || argv.d || './src/styles.css'
+program
+  .command('build')
+  .alias('b')
+  .description('Builds Tailwind')
+  .action((cmd) => {
+    build()
+  })
 
-console.log(sourceCSS, configFile, destCSS);
+program
+  .command('configure')
+  .alias('c')
+  .description('Configures your tailwind setup using 3 arguments or the default setup')
+  .option('-c, --config <config>', 'relative path to tailwind config js file')
+  .option('-s, --source <source>', 'relative path to css source files')
+  .option('-o, --output <output>', 'relative path to css output files (Angular global stylesheet)')
+  .option('-d, --default', 'overwrites ng-tailwind.js file to default paths except any concurrent arguments')
+  .action((args) => {
+    const ngTwConfig = {}
+    if (args.config) ngTwConfig.configJS = args.config
+    if (args.source) ngTwConfig.sourceCSS = args.source
+    if (args.output) ngTwConfig.outputCSS = args.output
+    configure(ngTwConfig, args.default)
+  })
 
-const tailwind = chokidar.watch([configFile, sourceCSS])
-
-tailwind.on('change', (event, path) => {
-  console.log('Reprocessing Tailwind Files')
-  child.exec(`./node_modules/.bin/tailwind build ${sourceCSS} -c ${configFile} -o ${destCSS}`)
-})
+program.parse(process.argv)

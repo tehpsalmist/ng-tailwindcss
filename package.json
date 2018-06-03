@@ -29,6 +29,6 @@
   "homepage": "https://github.com/tehpsalmist/ng-tailwindcss#readme",
   "dependencies": {
     "chokidar": "^2.0.3",
-    "minimist": "^1.2.0"
+    "commander": "^2.15.1"
   }
 }

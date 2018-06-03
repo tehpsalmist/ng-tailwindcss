@@ -39,7 +39,7 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
 4. Configure your tailwind source/destination/config files by running:
 
   ```
-  ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --dest ./path/to/whatever-you-call-it.css
+  ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/whatever-you-call-it.css
   ```
 
 You can alias your argument flags thus:
@@ -47,7 +47,7 @@ You can alias your argument flags thus:
   ```
   --config => -c
   --source => -s
-  --dest => -d
+  --output => -o
   ```
 
 This will result in an `ng-tailwind.js` file at your project's root:
@@ -56,7 +56,7 @@ This will result in an `ng-tailwind.js` file at your project's root:
   module.exports = {
     configJS: './path/to/whatever-you-named-tailwind-config.js',
     sourceCSS: './path/to/your-tailwind-source.css',
-    destCSS: './path/to/whatever-you-call-it.css'
+    outputCSS: './path/to/whatever-you-call-it.css'
   }
   ```
 
@@ -79,15 +79,15 @@ This will result in an `ng-tailwind.js` file at your project's root:
 ------
 
 ### Configuration
-The `ng-tailwind.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `destCSS`).
+The `ng-tailwind.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `outputCSS`).
 
 _*Important*: The default config (running_ `ng-tailwindcss configure` _with no arguments) will assume a configuration of:_
   ```
   {
     configJS: './tailwind.js',
     sourceCSS: ''./src/tailwind.css',
-    destCSS: './src/styles.css'
+    outputCSS: './src/styles.css'
   }
   ```
 
-It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably `destCSS`, but more complicated scenarios are certainly possible--be safe out there!).
+It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably your `outputCSS`, but more complicated scenarios are certainly possible--be safe out there!).
