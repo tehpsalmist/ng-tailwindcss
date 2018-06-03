@@ -1,6 +1,6 @@
 module.exports = {
-  configJS: 'anotherSource',
+  configJS: './tailwind.js',
   sourceCSS: './src/tailwind.css',
-  outputCSS: 'output.js'
+  outputCSS: './src/styles.css'
 }
       

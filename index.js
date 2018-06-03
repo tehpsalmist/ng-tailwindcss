@@ -2,7 +2,7 @@
 
 const child = require('child_process')
 const program = require('commander')
-// const watch = require('./lib/watch')
+const watch = require('./lib/watch')
 const build = require('./lib/build')
 const configure = require('./lib/configure')
 
@@ -12,6 +12,14 @@ program
   .description('Builds Tailwind')
   .action((cmd) => {
     build()
+  })
+
+program
+  .command('watch')
+  .alias('w')
+  .description('Watches Tailwind files and rebuilds on changes')
+  .action((cmd) => {
+    watch()
   })
 
 program
