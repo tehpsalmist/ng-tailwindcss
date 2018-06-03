@@ -5,7 +5,7 @@
   "bin": {
     "ng-tailwindcss": "./index.js"
   },
-  "description": "A helper module for integrating tailwindcss with angular-cli projects",
+  "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
