@@ -3,7 +3,7 @@
 
 ## Quick and Dirty (for new projects only!)
 
-After starting your new ng-cli project:d
+After starting your new ng-cli project:
 
   ```
   npm i ng-tailwindcss -g
@@ -25,7 +25,7 @@ Put all your tailwind imports in `src/tailwind.css` and adjust these scripts in 
 
 Run `npm start` and let the wind fill your wings!
 
-## Full Installation Guide
+## Full Installation and Usage Guide
 
 1. Install globally:
   `npm i ng-tailwindcss -g`
@@ -38,13 +38,23 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
 
 4. Configure your tailwind source/destination/config files by running:
 
-`ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --dest ./path/to/whatever-you-call-it.css`
+  ```
+  ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --dest ./path/to/whatever-you-call-it.css
+  ```
 
-  This will result in an `ng-tailwindcss.js` file at your project's root:
+You can alias your argument flags thus:
+
+  ```
+  --config => -c
+  --source => -s
+  --dest => -d
+  ```
+
+This will result in an `ng-tailwindcss.js` file at your project's root:
 
   ```
   module.exports = {
-    configFile: './path/to/whatever-you-named-tailwind-config.js',
+    configJS: './path/to/whatever-you-named-tailwind-config.js',
     sourceCSS: './path/to/your-tailwind-source.css',
     destCSS: './path/to/whatever-you-call-it.css'
   }
@@ -52,7 +62,7 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
 
   _See Configuration Below for More Details and Implications for Existing Angular Projects_
 
-5. Adjust these scripts in your package.json:
+5. Add or adjust these scripts in your package.json:
 
   ```
   scripts: {
@@ -66,13 +76,15 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
 
 6. Keep calm and angular on.
 
-## Configuration
-The ng-tailwindcss.js file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configFile` property, and retain the original values for `sourceCSS` and `destCSS`).
+------
+
+### Configuration
+The `ng-tailwindcss.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `destCSS`).
 
 _*Important*: The default config (running_ `ng-tailwindcss configure` _with no arguments) will assume a configuration of:_
   ```
   {
-    configFile: './tailwind.js',
+    configJS: './tailwind.js',
     sourceCSS: ''./src/tailwind.css',
     destCSS: './src/styles.css'
   }
