@@ -1,5 +1,5 @@
 # ng-tailwindcss
-### A helper module for integrating tailwindcss with angular-cli projects with as little pain as possible
+### A helpful cli tool for integrating tailwindcss into angular-cli projects with as little pain as possible
 
 ## Quick and Dirty (for new projects only!)
 
