@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const child = require('child_process')
 const program = require('commander')
 const watch = require('./lib/watch')
 const build = require('./lib/build')
+const scripts = require('./lib/scripts')
 const configure = require('./lib/configure')
 
 program
@@ -36,6 +36,14 @@ program
     if (args.source) ngTwConfig.sourceCSS = args.source
     if (args.output) ngTwConfig.outputCSS = args.output
     configure(ngTwConfig, args.default)
+  })
+
+program
+  .command('scripts')
+  .alias('s')
+  .description('Automatically inserts ng-tailwindcss the default scripts into your package.json')
+  .action((cmd) => {
+    scripts()
   })
 
 program.parse(process.argv)
