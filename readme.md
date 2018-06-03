@@ -50,7 +50,7 @@ You can alias your argument flags thus:
   --dest => -d
   ```
 
-This will result in an `ng-tailwindcss.js` file at your project's root:
+This will result in an `ng-tailwind.js` file at your project's root:
 
   ```
   module.exports = {
@@ -79,7 +79,7 @@ This will result in an `ng-tailwindcss.js` file at your project's root:
 ------
 
 ### Configuration
-The `ng-tailwindcss.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `destCSS`).
+The `ng-tailwind.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `destCSS`).
 
 _*Important*: The default config (running_ `ng-tailwindcss configure` _with no arguments) will assume a configuration of:_
   ```
