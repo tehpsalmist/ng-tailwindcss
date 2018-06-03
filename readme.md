@@ -42,7 +42,7 @@ A recommendation for new projects (no prior stylesheet changes) is to `touch src
   ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/whatever-you-call-it.css
   ```
 
-You can alias your commands or argument flags thus:
+  You can alias your commands or argument flags thus:
 
   ```
   configure => c
@@ -54,7 +54,7 @@ You can alias your commands or argument flags thus:
   build => b
   ```
 
-This will result in an `ng-tailwind.js` file at your project's root:
+  This will result in an `ng-tailwind.js` file at your project's root:
 
   ```
   module.exports = {
