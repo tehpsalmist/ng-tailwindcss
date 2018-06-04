@@ -114,7 +114,7 @@ _*Important*: The default config (running_ `ng-tailwindcss configure` _with no a
 
 It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably your `outputCSS`, but more complicated scenarios are certainly possible--be safe out there!).
 
-## A Few Notes About Existing Angular Projects
+### A Few Notes About Existing Angular Projects
 For existing projects that already have global stylesheets and other established CSS patterns, here are a few things to keep in mind:
 
 - On each build, Tailwind will overwrite the `outputCSS` file, so be sure to only edit the `sourceCSS` file with your custom styles.
