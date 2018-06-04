@@ -1,6 +1,6 @@
 {
   "name": "ng-tailwindcss",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "preferGlobal": true,
   "bin": {
     "ng-tailwindcss": "./index.js"
