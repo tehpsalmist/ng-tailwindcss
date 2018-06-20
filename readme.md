@@ -1,6 +1,8 @@
 # ng-tailwindcss
 ### A helpful cli tool for integrating tailwindcss into angular-cli projects with as little pain as possible
 
+_Now Windows compatible! (v1.0.3+)_
+
 ## Why Is This Necessary?
 
 If you haven't used [Tailwind CSS](https://tailwindcss.com) yet, you really should! However, if you are trying to use Tailwind in an Angular project, you will quickly realize that the best features of tailwind are found in the build process, which is conveniently automated using postCSS plugins. Unfortunately, Angular currently does not offer developers access to the webpack/postcss configuration being used 'under the hood', so you're out of luck. Unless...
@@ -69,9 +71,11 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
     module.exports = {
       configJS: './path/to/whatever-you-named-tailwind-config.js',
       sourceCSS: './path/to/your-tailwind-source.css',
-      outputCSS: './path/to/whatever-you-call-it.css'
+      outputCSS: './path/to/outputted-global-styles.css'
     }
     ```
+
+    _Please note that as of version 1.0.3, these paths will be absolute when created using the cli tool, though they can be manually edited to be relative paths with no adverse consequences._
 
     For those curious, under the hood, these properties correspond to the paths used in the [tailwind build command](https://tailwindcss.com/docs/installation#4-process-your-css-with-tailwind) like so:
 
@@ -107,10 +111,12 @@ _*Important*: The default config (running_ `ng-tailwindcss configure` _with no a
   ```
   {
     configJS: './tailwind.js',
-    sourceCSS: ''./src/tailwind.css',
+    sourceCSS: './src/tailwind.css',
     outputCSS: './src/styles.css'
   }
   ```
+
+_Also important: these paths will actually be coerced to absolute paths. If you find this confusing, please [open an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new), and I will adjust the docs accordingly._
 
 It should be noted that such a configuration will set up your project to overwrite angular's default `styles.css` during each build, so if you desire to use the defaults in your existing project (recommended), you should remove any css from this file and place it in `sourceCSS` (the default being `src/tailwind.css`). If you are using `styles.css` as a source file (not really recommended), don't forget to edit your angular.json `styles` array to reflect your new global stylesheet (probably your `outputCSS`, but more complicated scenarios are certainly possible--be safe out there!).
 
@@ -168,10 +174,10 @@ You can alias your commands or argument flags thus:
 
   ```
   configure => c
-    --config => -c
-    --source => -s
-    --output => -o
-    --default => -d
+      --config => -c
+      --source => -s
+      --output => -o
+      --default => -d
 
   watch => w
   build => b
@@ -182,4 +188,4 @@ including `--help` will provide a description of any command or argument.
 
 ## Contributing
 
-Yes, please.
+If you enjoy helping other developers get stuff done more efficiently, then we share a common goal, my friend. I would love to [hear your ideas](https://github.com/tehpsalmist/ng-tailwindcss/issues/new) to make this project better, or to review your pull requests.
