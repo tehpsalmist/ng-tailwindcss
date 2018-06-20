@@ -41,7 +41,7 @@ program
 program
   .command('scripts')
   .alias('s')
-  .description('Automatically inserts ng-tailwindcss the default scripts into your package.json')
+  .description('Automatically inserts the default build/serve/watch scripts into your package.json')
   .action((cmd) => {
     scripts()
   })

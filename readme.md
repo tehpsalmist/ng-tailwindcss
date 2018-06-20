@@ -51,9 +51,9 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
   `ng new angular-meets-tailwind`
 
 3. Follow Steps 1-3 from the Tailwind Installation Instructions:
-  - [Install Tailwind](https://tailwindcss.com/docs/installation#1-install-tailwind-via-npm) (`npm i tailwindcss -D`)
-  - [initialize](https://tailwindcss.com/docs/installation#2-create-a-tailwind-config-file) (`./node_modules/.bin/tailwind init`)
-  - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css).
+    - [Install Tailwind](https://tailwindcss.com/docs/installation#1-install-tailwind-via-npm) (`npm i tailwindcss -D`)
+    - [initialize](https://tailwindcss.com/docs/installation#2-create-a-tailwind-config-file) (`./node_modules/.bin/tailwind init`)
+    - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css).
 
     A recommendation for new projects (no changes to global stylesheet yet) is to `touch src/tailwind.css` and use that file for all global styles and [component classes](https://tailwindcss.com/docs/extracting-components). See Configuration below for existing projects.
 
