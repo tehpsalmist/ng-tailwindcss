@@ -7,7 +7,7 @@ If you haven't used [Tailwind CSS](https://tailwindcss.com) yet, you really shou
 
 You use `ng eject`! _(loud booing ensues)_
 
-Yes, using this excellent [SO answer](https://stackoverflow.com/questions/47381149/angular-4-tailwindcss-setup/#answer-47502171) or [YouTube video](https://www.youtube.com/watch?v=mUS0gclgO9Q), you can get at the postCSS controls and have a smooth tailwind build process and enjoy faster development speeds _when writing your styles_. But when you need a fancy new component and you type `ng g c complicated-but-awesome`, you'll quickly realize you just lost 5-10 minutes of your life when your terminal barks back,
+Yes, using this excellent [SO answer](https://stackoverflow.com/questions/47381149/angular-4-tailwindcss-setup/#answer-47502171) or [YouTube video](https://www.youtube.com/watch?v=mUS0gclgO9Q), you can get at the postCSS controls and have a smooth tailwind build process and enjoy faster development speeds _when writing your styles_. But when you need a fancy new component and you type `ng g c fancy-new-component`, you'll quickly realize you just lost 5-10 minutes of your life when your terminal barks back,
 
   ```
   You're on your own, pal.
@@ -51,9 +51,9 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
   `ng new angular-meets-tailwind`
 
 3. Follow Steps 1-3 from the Tailwind Installation Instructions:
-  - [Install Tailwind](https://tailwindcss.com/docs/installation#1-install-tailwind-via-npm) (`npm i tailwindcss -D`)
-  - [initialize](https://tailwindcss.com/docs/installation#2-create-a-tailwind-config-file) (`./node_modules/.bin/tailwind init`)
-  - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css).
+    - [Install Tailwind](https://tailwindcss.com/docs/installation#1-install-tailwind-via-npm) (`npm i tailwindcss -D`)
+    - [initialize](https://tailwindcss.com/docs/installation#2-create-a-tailwind-config-file) (`./node_modules/.bin/tailwind init`)
+    - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css).
 
     A recommendation for new projects (no changes to global stylesheet yet) is to `touch src/tailwind.css` and use that file for all global styles and [component classes](https://tailwindcss.com/docs/extracting-components). See Configuration below for existing projects.
 

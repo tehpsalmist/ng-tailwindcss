@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const path = require('path')
 const watch = require('./lib/watch')
 const build = require('./lib/build')
 const scripts = require('./lib/scripts')
@@ -32,16 +33,16 @@ program
   .option('-d, --default', 'overwrites ng-tailwind.js file to default paths except any concurrent arguments')
   .action((args) => {
     const ngTwConfig = {}
-    if (args.config) ngTwConfig.configJS = args.config
-    if (args.source) ngTwConfig.sourceCSS = args.source
-    if (args.output) ngTwConfig.outputCSS = args.output
+    if (args.config) ngTwConfig.configJS = path.resolve(args.config)
+    if (args.source) ngTwConfig.sourceCSS = path.resolve(args.source)
+    if (args.output) ngTwConfig.outputCSS = path.resolve(args.output)
     configure(ngTwConfig, args.default)
   })
 
 program
   .command('scripts')
   .alias('s')
-  .description('Automatically inserts ng-tailwindcss the default scripts into your package.json')
+  .description('Automatically inserts the default build/serve/watch scripts into your package.json')
   .action((cmd) => {
     scripts()
   })
