@@ -7,7 +7,7 @@ If you haven't used [Tailwind CSS](https://tailwindcss.com) yet, you really shou
 
 You use `ng eject`! _(loud booing ensues)_
 
-Yes, using this excellent [SO answer](https://stackoverflow.com/questions/47381149/angular-4-tailwindcss-setup/#answer-47502171) or [YouTube video](https://www.youtube.com/watch?v=mUS0gclgO9Q), you can get at the postCSS controls and have a smooth tailwind build process and enjoy faster development speeds _when writing your styles_. But when you need a fancy new component and you type `ng g c complicated-but-awesome`, you'll quickly realize you just lost 5-10 minutes of your life when your terminal barks back,
+Yes, using this excellent [SO answer](https://stackoverflow.com/questions/47381149/angular-4-tailwindcss-setup/#answer-47502171) or [YouTube video](https://www.youtube.com/watch?v=mUS0gclgO9Q), you can get at the postCSS controls and have a smooth tailwind build process and enjoy faster development speeds _when writing your styles_. But when you need a fancy new component and you type `ng g c fancy-new-component`, you'll quickly realize you just lost 5-10 minutes of your life when your terminal barks back,
 
   ```
   You're on your own, pal.
