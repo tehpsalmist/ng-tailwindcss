@@ -3,6 +3,8 @@
 
 _Now Windows compatible! (v1.0.3+)_
 
+_New Command Alias_ = `ngtw`
+
 ## Why Is This Necessary?
 
 If you haven't used [Tailwind CSS](https://tailwindcss.com) yet, you really should! However, if you are trying to use Tailwind in an Angular project, you will quickly realize that the best features of tailwind are found in the build process, which is conveniently automated using postCSS plugins. Unfortunately, Angular currently does not offer developers access to the webpack/postcss configuration being used 'under the hood', so you're out of luck. Unless...
@@ -32,14 +34,14 @@ After starting your new angular-cli project run these commands:
   npm i ng-tailwindcss -g
   npm i tailwindcss -D
   ./node_modules/.bin/tailwind init
-  ng-tailwindcss configure
+  ngtw configure
   touch src/tailwind.css
   ```
 
 Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use-tailwind-in-your-css) in `src/tailwind.css` and run:
 
   ```
-  ng-tailwindcss scripts
+  ngtw scripts
   ```
 
 **Run `npm start` and let the wind fill your wings!**
@@ -62,7 +64,7 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
 4. Configure your tailwind source/destination/config files by running:
 
     ```
-    ng-tailwindcss configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/outputted-global-styles.css
+    ngtw configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/outputted-global-styles.css
     ```
 
     This will result in an `ng-tailwind.js` file at your project's root:
@@ -89,13 +91,13 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
 
     ```
     scripts: {
-      "prestart": "ng-tailwindcss build",
-      "start": "ng serve & ng-tailwindcss watch",
-      "build": "ng-tailwindcss build && ng build"
+      "prestart": "ngtw build",
+      "start": "ng serve & ngtw watch",
+      "build": "ngtw build && ng build"
     }
     ```
 
-    or simply run `ng-tailwindcss scripts` to have these adjustments made automatically in your `package.json`.
+    or simply run `ngtw scripts` to have these adjustments made automatically in your `package.json`.
 
     Now using `npm start` for your development server will ensure your tailwind files are being watched and built with your project, and you can still rely on the angular-cli for everything else (no `ng eject`! yay!).
 
@@ -104,9 +106,9 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
 ------
 
 ## Configuration
-The `ng-tailwind.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ng-tailwindcss configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ng-tailwindcss configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `outputCSS`).
+The `ng-tailwind.js` file can be directly manipulated (in keeping with the tailwind way of doing things) after the initial configuration command has been run. Conversely, if you prefer the command line, running `ngtw configure` a second time will overwrite only the properties specified by the flags you include (e.g. `ngtw configure -c ./new-tailwind-config.js` will only change the `configJS` property, and retain the original values for `sourceCSS` and `outputCSS`).
 
-_*Important*: The default config (running_ `ng-tailwindcss configure` _with no arguments) will assume a configuration of:_
+_*Important*: The default config (running_ `ngtw configure` _with no arguments) will assume a configuration of:_
 
   ```
   {
@@ -127,19 +129,19 @@ For existing projects that already have global stylesheets and other established
 
 - Don't forget to adjust your angular.json `styles` array to reflect the `outputCSS` file, if you are using your original global stylesheet as your `sourceCSS` file.
 
-- If you already have complicated start/build/production/etc scripts, then manually customizing these scripts should be preferred to running `ng-tailwindcss s`.
+- If you already have complicated start/build/production/etc scripts, then manually customizing these scripts should be preferred to running `ngtw s`.
 
-  - `ng-tailwindcss build` should be included _before_ any build process using `&&` to ensure all stylesheets are up-to-date before the angular build takes place.
+  - `ngtw build` should be included _before_ any build process using `&&` to ensure all stylesheets are up-to-date before the angular build takes place.
 
-    ex: `"build-prod": "ng-tailwindcss build && ng build --prod --aot"`
+    ex: `"build-prod": "ngtw build && ng build --prod --aot"`
 
-  - `ng-tailwindcss watch` should be coupled with the dev server command (`ng serve`) using a single `&` so the processes run concurrently and can be killed concurrently.
+  - `ngtw watch` should be coupled with the dev server command (`ng serve`) using a single `&` so the processes run concurrently and can be killed concurrently.
 
-    ex: `"start": "ng serve & ng-tailwindcss watch"`
+    ex: `"start": "ng serve & ngtw watch"`
 
-  - `ng-tailwindcss build` should also be included in a prestart script to ensure that styles are up-to-date before launching the dev server. If your dev server starts with a different command (with no `pre` option), consider:
+  - `ngtw build` should also be included in a prestart script to ensure that styles are up-to-date before launching the dev server. If your dev server starts with a different command (with no `pre` option), consider:
 
-    ex: `"custom dev command": "ng-tailwindcss build && fancy -dev -server -command & ng-tailwindcss watch`
+    ex: `"custom dev command": "ngtw build && fancy -dev -server -command & ngtw watch`
 
 Running into a scenario not covered in this documentation? [Open an issue!](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)
 
@@ -158,7 +160,7 @@ Example:
   }
 
   // bash script (this should fix it):
-  > ng-tailwindcss configure --default -o ./src/my-groovy-styles.css
+  > ngtw configure --default -o ./src/my-groovy-styles.css
 
   // ng-tailwind.js (updated)
   module.exports = {
@@ -173,16 +175,19 @@ Example:
 You can alias your commands or argument flags thus:
 
   ```
-  configure => c
-      --config => -c
-      --source => -s
-      --output => -o
-      --default => -d
+  ng-tailwindcss => ngtw
 
-  watch => w
-  build => b
-  scripts => s
-  --help => -h
+      configure => c
+          --config => -c
+          --source => -s
+          --output => -o
+          --default => -d
+
+      watch => w
+      build => b
+      scripts => s
+
+      --help => -h
   ```
 including `--help` will provide a description of any command or argument.
 
