@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "preferGlobal": true,
   "bin": {
-    "ng-tailwindcss": "./index.js"
+    "ngtw": "./index.js"
   },
   "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
   "main": "index.js",
