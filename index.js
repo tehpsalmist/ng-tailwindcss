@@ -12,8 +12,9 @@ program
   .command('build')
   .alias('b')
   .description('Builds Tailwind')
-  .action((cmd) => {
-    build()
+  .option('-p, --purge', 'run PurgeCSS with this build')
+  .action((args) => {
+    build({ purgeFlag: args.purge })
   })
 
 program
@@ -43,7 +44,6 @@ program
     if (args.source) ngTwConfig.sourceCSS = path.resolve(args.source)
     if (args.output) ngTwConfig.outputCSS = path.resolve(args.output)
     if (args.hasOwnProperty('purge') || args.unsetPurge) ngTwConfig.purge = args.purge || false
-    console.log(ngTwConfig)
     configure(ngTwConfig, args.default)
   })
 
