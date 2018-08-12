@@ -27,7 +27,7 @@ program
 program
   .command('configure')
   .alias('c')
-  .description('Configures your tailwind setup using 3 arguments or the default setup')
+  .description('Configure your tailwind setup using custom arguments or the default setup;\n\tRestart of development server required for changes to take effect')
   .option('-c, --config <config>', 'relative path to tailwind config js file')
   .option('-s, --source <source>', 'relative path to css source files')
   .option('-o, --output <output>', 'relative path to css output files (Angular global stylesheet)')
