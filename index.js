@@ -7,6 +7,8 @@ const build = require('./lib/build')
 const scripts = require('./lib/scripts')
 const configure = require('./lib/configure')
 const purge = require('./lib/purge')
+const updateNotifier = require('update-notifier')
+const pkg = require('./package.json')
 
 program
   .command('build')
@@ -71,3 +73,5 @@ program
   })
 
 program.parse(process.argv)
+
+updateNotifier({ pkg, updateCheckInterval: 1000 * 60 * 60 * 24 }).notify()
