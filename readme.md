@@ -1,9 +1,13 @@
 # ng-tailwindcss
 ### A CLI tool for integrating Tailwind CSS into Angular-CLI projects with as little pain as possible
 
-_v1.1.0: PurgeCSS Integration! Read on for the updated API_
-
-_New Command Alias_ = `ngtw`
+> _What's New (v1.1.1+):_
+>
+> - PurgeCSS integration! Read on for the updated API
+>
+> - New command alias = `ngtw`
+>
+> - No breaking changes! Upgrade from 1.0.3 without skipping a beat!
 
 ## Why Is This Necessary?
 
