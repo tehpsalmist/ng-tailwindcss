@@ -37,6 +37,7 @@ program
   .option('-d, --default', 'overwrites ng-tailwind.js file to default paths except any concurrent arguments')
   .option('-p, --purge', 'Sets `purge: true` in ng-tailwind.js, causing every build to run PurgeCSS, even during development')
   .option('--unset-purge', 'Sets `purge: false` in ng-tailwind.js, which is the default configuration')
+  .option('--sass', 'Sets `sass: true` in ng-tailwind.js. Default is `false`.')
   .action((args) => {
     if (args.purge && args.unsetPurge) {
       return console.error('To purge or not to purge...make up your mind.')
@@ -46,6 +47,7 @@ program
     if (args.source) ngTwConfig.sourceCSS = path.resolve(args.source)
     if (args.output) ngTwConfig.outputCSS = path.resolve(args.output)
     if (args.hasOwnProperty('purge') || args.unsetPurge) ngTwConfig.purge = args.purge || false
+    if (args.sass) ngTwConfig.sass = args.sass || false
     configure(ngTwConfig, args.default)
   })
 
