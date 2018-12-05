@@ -1,13 +1,11 @@
 # ng-tailwindcss
 ### A CLI tool for integrating Tailwind CSS into Angular-CLI projects with as little pain as possible
 
-> _What's New (v1.1.1+):_
+> _What's New (v1.2+):_
 >
-> - PurgeCSS integration! Read on for the updated API
+> - PurgeCSS, ready to rock, right out of the box!
 >
-> - New command alias = `ngtw`
->
-> - No breaking changes! Upgrade from 1.0.3 without skipping a beat!
+> - Sass support with optional dependency on node-sass
 
 ## Why Is This Necessary?
 
@@ -73,6 +71,8 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
       configJS: '/Absolute/path/to/whatever-you-named-tailwind-config.js',
       sourceCSS: '/Absolute/path/to/your-tailwind-source.css',
       outputCSS: '/Absolute/path/to/outputted-global-styles.css',
+      // Sass
+      sass: false,
       // PurgeCSS Settings
       ...
     }
@@ -119,6 +119,8 @@ _*Important*: The default config (running_ `ngtw configure` _with no arguments) 
     configJS: './tailwind.js',
     sourceCSS: './src/tailwind.css',
     outputCSS: './src/styles.css',
+    // Sass
+    sass: false,
     // PurgeCSS Settings
     ...
   }
@@ -142,6 +144,8 @@ Example:
     configJS: './some-tailwind-config.js',
     sourceCSS: './random/path/you/chose/tailwind.css',
     outputCSS: './way/different/location/of/styles.css'
+    // Sass
+    sass: false,
     // PurgeCSS Settings
     ...
   }
@@ -161,6 +165,8 @@ Example:
     configJS: './tailwind.js', // default config value
     sourceCSS: './src/tailwind.css', // default source value
     outputCSS: './src/my-groovy-styles.css' // -o (--output) overrides default
+    // Sass
+    sass: false,
     // PurgeCSS Settings
     ...
   }
@@ -258,6 +264,8 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
       configJS: './tailwind.js',
       sourceCSS: './src/tailwind.css',
       outputCSS: './src/styles.css',
+      // Sass
+      sass: false,
       // PurgeCSS Settings
       purge: false,
       keyframes: false,
@@ -271,9 +279,21 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
 
 --------
 
+## Using Sass
+
+To take advantage of Sass in your `tailwind.(s)css` file, you must first install `node-sass` in your project (possibly included with your Angular app if you are using sass there).
+
+Once this optional dependency is in place, configure for Sass with `ngtw c --sass`.
+
+That's all! Keep in mind, this tool does not compile CSS/SCSS from any other files, so you'll still have to configure your `angular.json` for the rest.
+
+**_A note on how this is implemented:_** _The compiled CSS from your tailwind.scss is stored in a temporary `.css` file that is immediately destroyed once the build is complete. At the moment, there is no way to alter this behavior. If this is not optimal for your situaion, please [file an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)._
+
+--------
+
 ## Upgrading from ng-tailwindcss =< 1.0.3
 
-There are no breaking changes from 1.0.3 to 1.1.0, so all commands will continue to work as expected, but to take full advantage of PurgeCSS, simply install the latest version globally with `npm up -g ng-tailwindcss`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (and use the default PurgeCSS Settings).
+There are no breaking changes from 1.0.3 to 1.1.0+ or 1.2.0+, so all commands will continue to work as expected, but to take full advantage of PurgeCSS, simply install the latest version globally with `npm i -g ng-tailwindcss@latest`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (and use the default PurgeCSS Settings).
 
 --------
 
@@ -316,6 +336,7 @@ You can alias your commands or argument flags thus:
           --default => -d
           --purge => -p
           --unset-purge (no alias)
+          --sass (no alias, and must be manually set to false)
 
       build => b
           --purge => -p
@@ -330,6 +351,7 @@ You can alias your commands or argument flags thus:
 
       --help => -h
   ```
+
 including `--help` will provide a description of any command or argument.
 
 --------
