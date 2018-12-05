@@ -74,4 +74,4 @@ program
 
 program.parse(process.argv)
 
-updateNotifier({ pkg, updateCheckInterval: 1000 * 60 * 60 * 24 }).notify()
+updateNotifier({ pkg, updateCheckInterval: 1000 * 60 * 60 * 24 }).notify({ isGlobal: true })
