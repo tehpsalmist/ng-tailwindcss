@@ -5,7 +5,7 @@
 >
 > - PurgeCSS, ready to rock, right out of the box!
 >
-> - Hot reloading when changes are made to ng-tailwind.js (like Purge whitelist additions/deletions)! [v.1.2.1+]
+> - Hot reloading when changes are made to ng-tailwind.js (e.g. Purge whitelist additions/deletions)! [v1.2.1+]
 >
 > - Sass support with optional dependency on node-sass
 
