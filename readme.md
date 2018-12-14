@@ -5,6 +5,8 @@
 >
 > - PurgeCSS, ready to rock, right out of the box!
 >
+> - Hot reloading when changes are made to ng-tailwind.js (e.g. Purge whitelist additions/deletions)! [v1.2.1+]
+>
 > - Sass support with optional dependency on node-sass
 
 ## Why Is This Necessary?
@@ -224,7 +226,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
 
     Example: _Production Build Script_
     
-    ```json
+    ```js
     "scripts": {
       "b-dev": "ngtw build && ng build", // dont purge
       "b-prod": "ngtw build --purge && ng build -c production" // purge
@@ -235,7 +237,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
 
     This gives you granular control over when PurgeCSS runs, as well as a few other options that can be altered with each execution.
 
-    **Usage**: `ngtw purge [--keyframes][--fontface][--rejected]`
+    **Usage**: `ngtw purge [--keyframes] [--fontface] [--rejected]`
 
     At any time this command can be run to purge your `outputCSS` file. By default, the settings specified in your ng-tailwind.js file will be used, but any boolean properties (keyframes, fontface, rejected) that are `false` can be overridden to be `true` during this run with the use of the flags.
 
@@ -247,7 +249,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
 
     {project root}/rejectedCSS.json:
 
-    ```json
+    ```js
     [
       ".dynamically-generated-class", // Ah! Forgot to whitelist this one!
       ".useless-class",
@@ -281,11 +283,11 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
 
 ## Using Sass
 
-To take advantage of Sass in your `tailwind.(s)css` file, you must first install `node-sass` in your project (possibly included with your Angular app if you are using sass there).
+To take advantage of Sass in your `tailwind.(s)css` file, `node-sass` must be installed in your project (most likely included with your Angular app unless you removed it somehow, because you have way too much time on your hands). In the rare scenario it is not installed, run `npm i -O node-sass` in your project root (installs as optional dependency) and you're good to go.
 
 Once this optional dependency is in place, configure for Sass with `ngtw c --sass`.
 
-That's all! Keep in mind, this tool does not compile CSS/SCSS from any other files, so you'll still have to configure your `angular.json` for the rest.
+That's all! Keep in mind, this tool does not compile CSS/SCSS from any other files, so you'll still have to configure your `angular.json` for the rest, which is the preferred way to handle those files.
 
 **_A note on how this is implemented:_** _The compiled CSS from your tailwind.scss is stored in a temporary `.css` file that is immediately destroyed once the build is complete. At the moment, there is no way to alter this behavior. If this is not optimal for your situaion, please [file an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)._
 
@@ -293,7 +295,7 @@ That's all! Keep in mind, this tool does not compile CSS/SCSS from any other fil
 
 ## Upgrading from ng-tailwindcss =< 1.0.3
 
-There are no breaking changes from 1.0.3 to 1.1.0+ or 1.2.0+, so all commands will continue to work as expected, but to take full advantage of PurgeCSS, simply install the latest version globally with `npm i -g ng-tailwindcss@latest`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (and use the default PurgeCSS Settings).
+There are no breaking changes from 1.0.3 to 1.1.0+ or 1.2.0+, so all commands will continue to work as expected, but to take full advantage of PurgeCSS or Sass capabilities, simply install the latest version globally with `npm i -g ng-tailwindcss@latest`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (and use the default PurgeCSS Settings).
 
 --------
 
