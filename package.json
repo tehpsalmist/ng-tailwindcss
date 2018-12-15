@@ -29,9 +29,9 @@
   },
   "homepage": "https://github.com/tehpsalmist/ng-tailwindcss#readme",
   "dependencies": {
-    "chokidar": "^2.0.3",
-    "commander": "^2.15.1",
-    "purgecss": "^1.0.1",
+    "chokidar": "^2.0.4",
+    "commander": "^2.19.0",
+    "purgecss": "^1.1.0",
     "update-notifier": "^2.5.0"
   }
 }
