@@ -275,7 +275,8 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
       rejected: false,
       whitelist: ['dynamically-generated-class'], // Problem solved
       whitelistPatterns: [/dynamically/, /generated/, /class/], // overkill, but also works
-      whitelistPatternsChildren: []
+      whitelistPatternsChildren: [],
+      extensions: ['.ts', '.html', '.js']
     }
     ```
 
