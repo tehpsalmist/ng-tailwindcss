@@ -1,13 +1,13 @@
 # ng-tailwindcss
 ### A CLI tool for integrating Tailwind CSS into Angular-CLI projects with as little pain as possible
 
-> _What's New (v1.2+):_
+> _Core Features:_
 >
-> - PurgeCSS, ready to rock, right out of the box!
->
-> - Hot reloading when changes are made to ng-tailwind.js (e.g. Purge whitelist additions/deletions)! [v1.2.1+]
+> - PurgeCSS, ready to rock "out of the box", but also fully configurable (and monorepo friendly)
 >
 > - Sass support with optional dependency on node-sass
+>
+> - Defaults reflect Tailwind 1.0.0-stable file naming conventions (v2.0.0)
 
 ## Why Is This Necessary?
 
@@ -29,12 +29,12 @@ After starting your new angular-cli project run these commands:
   ```sh
   npm i ng-tailwindcss -g
   npm i tailwindcss -D
-  ./node_modules/.bin/tailwind init
+  npx tailwind init # use --full, if you want to see all the defaults in your tailwind.config.js
   ngtw configure
   touch src/tailwind.css
   ```
 
-Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use-tailwind-in-your-css) in `src/tailwind.css` and run:
+Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#2-add-tailwind-to-your-css) in `src/tailwind.css` and run:
 
   ```sh
   ngtw scripts
@@ -54,8 +54,8 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
 
 3. Follow Steps 1-3 from the Tailwind Installation Instructions:
     - [Install Tailwind](https://tailwindcss.com/docs/installation#1-install-tailwind-via-npm) (`npm i tailwindcss -D`)
-    - [initialize](https://tailwindcss.com/docs/installation#2-create-a-tailwind-config-file) (`./node_modules/.bin/tailwind init`)
-    - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css).
+    - [initialize](https://tailwindcss.com/docs/configuration/#creating-your-configuration-file) (`npx tailwind init`)
+    - [Use tailwind in your _source_ css files](https://tailwindcss.com/docs/installation/#2-add-tailwind-to-your-css).
 
     A recommendation for new projects (no changes to global stylesheet yet) is to `touch src/tailwind.css` and use that file for all global styles and [component classes](https://tailwindcss.com/docs/extracting-components). See Configuration section for existing projects.
 
@@ -82,10 +82,11 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#3-use
 
     _Please note that as of version 1.0.3, these paths will be absolute when created using the cli tool, though they can be manually edited to be relative paths with no adverse consequences._
 
-    For those curious, under the hood, these properties correspond to the paths used in the [tailwind build command](https://tailwindcss.com/docs/installation#4-process-your-css-with-tailwind) like so:
+    For those curious, under the hood, these properties correspond to the paths used in the [tailwind build command](https://tailwindcss.com/docs/installation/#using-tailwind-cli) like so:
 
-    ```
+    ```sh
     ./node_modules/.bin/tailwind build {sourceCSS} -c {configJS} -o {outputCSS}
+    # npx is not assumed by this project, to avoid worrying about it as a dependency
     ```
 
     _See Configuration section for more details and implications for existing Angular projects_
@@ -118,7 +119,7 @@ _*Important*: The default config (running_ `ngtw configure` _with no arguments) 
   ```js
   {
     // Tailwind Paths
-    configJS: './tailwind.js',
+    configJS: './tailwind.config.js',
     sourceCSS: './src/tailwind.css',
     outputCSS: './src/styles.css',
     // Sass
@@ -164,7 +165,7 @@ Example:
   ```js
   module.exports = {
     // Tailwind Paths
-    configJS: './tailwind.js', // default config value
+    configJS: './tailwind.config.js', // default config value
     sourceCSS: './src/tailwind.css', // default source value
     outputCSS: './src/my-groovy-styles.css' // -o (--output) overrides default
     // Sass
@@ -186,11 +187,11 @@ For example:
   - `ngtw build` produces =>
   - styles.css file of ~300kb (all possible selectors; results may vary) =>
   - `ngtw purge` takes in that stylesheet and =>
-  - rewrites styles.css file of 6kb (same file location, but with only a fraction of the original selectors, and no comments)
+  - rewrites styles.css file of 6kb (same file location, but with only a fraction of the original selectors, and _no comments_)
 
 "Ah, but how does PurgeCSS know what selectors I'm using?" you ask.
 
-ng-tailwindcss uses a [custom extractor](https://tailwindcss.com/docs/controlling-file-size#removing-unused-css-with-purgecss) that is run against all .html and .ts files in the /src directory. You can edit your PurgeCSS configuration in the ng-tailwind.js file. Read the [PurgeCSS Docs](https://www.purgecss.com/configuration) to see what is possible and how to maximize the configuration for your project.
+ng-tailwindcss uses a [custom extractor](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) that is run against all .html and .ts files in the /src directory. You can edit your PurgeCSS configuration in the ng-tailwind.js file. Read the [PurgeCSS Docs](https://www.purgecss.com/configuration) to see what is possible and how to maximize the configuration for your project.
 
 ### _How To Use It_
 When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways to execute the script:
@@ -212,7 +213,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
     ngtw scripts
 
     # Even though the scripts command does not create any PurgeCSS scripts,
-    # the configuration of {purge: true} in ng-tailwind.js will cause PurgeCSS
+    # the configuration of {purge: true} in ng- will cause PurgeCSS
     # to run after every successful Tailwind build.
     ```
 
@@ -263,7 +264,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
     ```js
     module.exports = {
       // Tailwind Paths
-      configJS: './tailwind.js',
+      configJS: './tailwind.config.js',
       sourceCSS: './src/tailwind.css',
       outputCSS: './src/styles.css',
       // Sass
@@ -276,9 +277,22 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
       whitelist: ['dynamically-generated-class'], // Problem solved
       whitelistPatterns: [/dynamically/, /generated/, /class/], // overkill, but also works
       whitelistPatternsChildren: [],
-      extensions: ['.ts', '.html', '.js']
+      extensions: ['.ts', '.html', '.js'],
+      content: []
     }
     ```
+
+### _A Note About Monorepos_
+
+If you are working with a monorepo structure where the content you need PurgeCSS to examine is not necessarily in the `./src/` directory, you can use the `content` property to define the path to those directories.
+
+Example:
+
+```js
+content: ['./app1/**/*.html', './app1/**/*.ts', '../app2/**/*.js']
+```
+
+_The default extractor and default content glob/path (to the `./src/` directory) cannot be changed_
 
 --------
 
@@ -294,9 +308,11 @@ That's all! Keep in mind, this tool does not compile CSS/SCSS from any other fil
 
 --------
 
-## Upgrading from ng-tailwindcss =< 1.0.3
+## Upgrading from older versions of ng-tailwindcss
 
-There are no breaking changes from 1.0.3 to 1.1.0+ or 1.2.0+, so all commands will continue to work as expected, but to take full advantage of PurgeCSS or Sass capabilities, simply install the latest version globally with `npm i -g ng-tailwindcss@latest`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (and use the default PurgeCSS Settings).
+The only breaking change ever introduced would be the name change of the default tailwind config file (tailwind.js => tailwind.config.js), otherwise all commands will continue to work as expected. However, newer versions do contain more features in the configuration file, which you may or may not be aware of or even want to make use of.
+
+To take full advantage of the latest PurgeCSS or Sass capabilities, simply install the latest version globally with `npm i -g ng-tailwindcss@latest`, then run `ngtw c` and your ng-tailwind.js file will automatically fill out with the default PurgeCSS settings properties (of course, you could manually add them too, if you're into that sort of thing). Even without updating ng-tailwind.js, running any variety of the purge command will still work (default PurgeCSS Settings will be used).
 
 --------
 
