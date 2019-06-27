@@ -298,13 +298,13 @@ _The default extractor and default content glob/path (to the `./src/` directory)
 
 ## Using Sass
 
-To take advantage of Sass in your `tailwind.(s)css` file, `node-sass` must be installed in your project (most likely included with your Angular app unless you removed it somehow, because you have way too much time on your hands). In the rare scenario it is not installed, run `npm i -O node-sass` in your project root (installs as optional dependency) and you're good to go.
+To take advantage of Sass in your `tailwind.(s)css` file, either `node-sass` or `sass` (dart-sass on Angular 8) must be installed in your project (most likely included with your Angular app unless you removed it somehow, because you have way too much time on your hands). In the rare scenario it is not installed, run `npm i -O node-sass` (or `sass`) in your project root (installs as optional dependency) and you're good to go.
 
 Once this optional dependency is in place, configure for Sass with `ngtw c --sass`.
 
 That's all! Keep in mind, this tool does not compile CSS/SCSS from any other files, so you'll still have to configure your `angular.json` for the rest, which is the preferred way to handle those files.
 
-**_A note on how this is implemented:_** _The compiled CSS from your tailwind.scss is stored in a temporary `.css` file that is immediately destroyed once the build is complete. At the moment, there is no way to alter this behavior. If this is not optimal for your situaion, please [file an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)._
+**_A note on how this is implemented:_** _The compiled CSS from your tailwind.scss is stored in a temporary `.css` file that is immediately destroyed once the build is complete. At the moment, there is no way to alter this behavior. If this is not optimal for your situation, please [file an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)._
 
 --------
 
