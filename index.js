@@ -15,8 +15,9 @@ program
   .alias('b')
   .description('Builds Tailwind')
   .option('-p, --purge', 'run PurgeCSS with this build')
+  .option('-c, --config <config>', 'relative path to tailwind config js file')
   .action((args) => {
-    build({ purgeFlag: args.purge })
+    build({ purgeFlag: args.purge, configPath: args.config })
   })
 
 program
