@@ -24,8 +24,9 @@ program
   .command('watch')
   .alias('w')
   .description('Watches Tailwind files and rebuilds on changes')
-  .action((cmd) => {
-    watch()
+  .option('-c, --config <config>', 'relative path to tailwind config js file')
+  .action((args) => {
+    watch({configPath: args.config})
   })
 
 program
