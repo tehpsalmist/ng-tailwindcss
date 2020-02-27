@@ -64,6 +64,7 @@ program
   .command('purge')
   .alias('p')
   .description('Run PurgeCSS on your output file to eliminate unused CSS selectors')
+  .option('-c, --config <config>', 'relative path to tailwind config js file')
   .option('-k, --keyframes', 'PurgeCSS will remove unused keyframes')
   .option('-f, --fontface', 'PurgeCSS will remove unused fontfaces')
   .option('-r, --rejected', 'Print the list of rejected selectors to the console')
@@ -71,7 +72,8 @@ program
     purge({
       keyframes: args.keyframes,
       fontFace: args.fontFace,
-      rejected: args.rejected
+      rejected: args.rejected,
+      configPath: args.config
     })
   })
 
