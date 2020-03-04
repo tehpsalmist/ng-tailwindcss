@@ -42,12 +42,29 @@ program
     if (args.purge && args.unsetPurge) {
       return console.error('To purge or not to purge...make up your mind.')
     }
+
     const ngTwConfig = {}
-    if (args.config) ngTwConfig.configJS = path.normalize(path.resolve(args.config))
-    if (args.source) ngTwConfig.sourceCSS = path.normalize(path.resolve(args.source))
-    if (args.output) ngTwConfig.outputCSS = path.normalize(path.resolve(args.output))
-    if ({}.hasOwnProperty.call(args, 'purge') || args.unsetPurge) ngTwConfig.purge = args.purge || false
-    if (args.sass) ngTwConfig.sass = args.sass || false
+
+    if (args.config) {
+      ngTwConfig.configJS = path.normalize(path.resolve(args.config))
+    }
+
+    if (args.source) {
+      ngTwConfig.sourceCSS = path.normalize(path.resolve(args.source))
+    }
+
+    if (args.output) {
+      ngTwConfig.outputCSS = path.normalize(path.resolve(args.output))
+    }
+
+    if ({}.hasOwnProperty.call(args, 'purge') || args.unsetPurge) {
+      ngTwConfig.purge = args.purge || false
+    }
+
+    if (args.sass) {
+      ngTwConfig.sass = args.sass || false
+    }
+
     configure(ngTwConfig, args.default)
   })
 
