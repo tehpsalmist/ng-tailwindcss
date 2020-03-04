@@ -8,7 +8,9 @@
   "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard && echo 'All tests pass!'",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
   },
   "repository": {
     "type": "git",
