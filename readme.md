@@ -282,7 +282,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
     }
     ```
 
-### _A Note About Monorepos_
+### Monorepo Support
 
 If you are working with a monorepo structure where the content you need PurgeCSS to examine is not necessarily in the `./src/` directory, you can use the `content` property to define the path to those directories.
 
@@ -293,6 +293,17 @@ content: ['./app1/**/*.html', './app1/**/*.ts', '../app2/**/*.js']
 ```
 
 _The default extractor and default content glob/path (to the `./src/` directory) cannot be changed_
+
+If you have sub-projects that require fine-tuning of your ng-tailwind.js options, then you can create alternate ng-tailwind.js files for those sub-projects and leverage them in your watch/build/purge commands with the option `--config (-c)`. For example, your package.json scripts might look like this:
+
+```js
+{
+  "start": "ng serve & ngtw watch", // serves up "main app" using the default ./ng-tailwind.js for configuration
+  "start:other": "ng serve other & ngtw watch -c projects/other-app/other-ng-tailwind.js", // serves up sub-project in same monorepo with custom config file
+  "build": "ngtw build && ng build",
+  "build:other": "ngtw build other -c projects/other-app/other-ng-tailwind.js && ng build"
+}
+```
 
 --------
 
@@ -359,13 +370,16 @@ You can alias your commands or argument flags thus:
 
       build => b
           --purge => -p
+          --config => -c
       
       purge => p
           --keyframes => -k
           --fontface => -f
           --rejected => -r
+          --config => -c
 
       watch => w
+          --config => -c
       scripts => s
 
       --help => -h
