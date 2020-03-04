@@ -8,7 +8,9 @@
   "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard && echo 'All tests pass!'",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -29,9 +31,12 @@
   },
   "homepage": "https://github.com/tehpsalmist/ng-tailwindcss#readme",
   "dependencies": {
-    "chokidar": "^3.0.0",
+    "chokidar": "^3.3.1",
     "commander": "^4.1.1",
-    "purgecss": "^1.3.0",
+    "purgecss": "^1.4.2",
     "update-notifier": "^4.1.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1"
   }
 }
