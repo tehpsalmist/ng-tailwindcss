@@ -3,11 +3,13 @@
 
 > _Core Features:_
 >
-> - PurgeCSS, ready to rock "out of the box", but also fully configurable (and monorepo friendly)
+> - PurgeCSS, ready to rock "out of the box", but also fully configurable
 >
-> - Sass support with optional dependency on node-sass
+> - Sass support with optional dependency on [node-sass](https://www.npmjs.com/package/node-sass) or [dart-sass](https://www.npmjs.com/package/sass)
 >
-> - Defaults reflect Tailwind 1.0.0-stable file naming conventions (v2.0.0)
+> - Defaults reflect Tailwind 1.0.0-stable file naming conventions (ngtw v2.0.0+)
+>
+> - Angular Workspaces (and other monorepo structures) Support (ngtw v2.2.0+)
 
 ## Why Is This Necessary?
 
