@@ -26,7 +26,7 @@ program
   .description('Watches Tailwind files and rebuilds on changes')
   .option('-c, --config <config>', 'relative path to tailwind config js file')
   .action((args) => {
-    watch({configPath: args.config})
+    watch({ configPath: args.config })
   })
 
 program
