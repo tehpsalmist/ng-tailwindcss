@@ -3,10 +3,10 @@
   "version": "2.1.1",
   "preferGlobal": true,
   "bin": {
-    "ngtw": "./index.js"
+    "ngtw": "./cli/index.js"
   },
   "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
-  "main": "index.js",
+  "main": "/cli/index.js",
   "scripts": {
     "test": "standard && echo 'All tests pass!'",
     "lint": "standard",
