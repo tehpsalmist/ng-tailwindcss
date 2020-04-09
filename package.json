@@ -33,7 +33,7 @@
   "dependencies": {
     "chokidar": "^3.3.1",
     "commander": "^4.1.1",
-    "purgecss": "^1.4.2",
+    "purgecss": "^2.1.2",
     "update-notifier": "^4.1.0"
   },
   "devDependencies": {
