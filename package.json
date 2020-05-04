@@ -8,7 +8,8 @@
   "description": "A helpful cli tool for integrating tailwindcss with angular-cli projects",
   "main": "index.js",
   "scripts": {
-    "test": "standard && echo 'All tests pass!'",
+    "test": "standard && node test",
+    "tdd": "nodemon test --ignore test/ng-tailwind.js",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
