@@ -59,7 +59,7 @@ if (process.platform === 'win32') {
 
       const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
 
-      strictEqual(configJS, 'my/path/to/existing/tailwind.config.js')
+      strictEqual(configJS, 'my\\path\\to\\existing\\tailwind.config.js')
       strictEqual(sourceCSS, 'C:\\Users\\Me\\folder\\existing\\src\\tailwind.css')
       strictEqual(outputCSS, '.\\existing\\unix\\style.css')
     },
