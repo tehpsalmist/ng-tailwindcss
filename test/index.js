@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const { strictEqual } = require('assert')
 const configure = require('../lib/configure')
 
@@ -15,11 +16,52 @@ if (process.platform === 'win32') {
 
       const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
 
-      console.log(configJS, sourceCSS, outputCSS)
-
       strictEqual(configJS, 'tailwind.config.js')
       strictEqual(sourceCSS, 'src\\tailwind.css')
       strictEqual(outputCSS, 'src\\styles.css')
+    },
+    cleanup: () => {
+      deleteNgTailwindJS()
+    }
+  })
+
+  register('set user-defined paths correctly on windows OS', {
+    test: async () => {
+      await configure({
+        configJS: path.normalize('./my/path/to/tailwind.config.js'),
+        sourceCSS: path.normalize('C:\\Users\\Me\\AppData\\Roaming\\ATT\\lol\\src\\tailwind.css'),
+        outputCSS: path.normalize('.\\windows\\sucks.css')
+      })
+
+      const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
+
+      strictEqual(configJS, 'my\\path\\to\\tailwind.config.js')
+      strictEqual(sourceCSS, 'C:\\Users\\Me\\AppData\\Roaming\\ATT\\lol\\src\\tailwind.css')
+      strictEqual(outputCSS, 'windows\\sucks.css')
+    },
+    cleanup: () => {
+      deleteNgTailwindJS()
+    }
+  })
+
+  register('rewrite paths from existing config correctly on windows OS', {
+    setup: () => {
+      fs.writeFileSync('./ng-tailwind.js', `module.exports = {
+        configJS: 'my/path/to/existing/tailwind.config.js',
+        sourceCSS: 'C:\\Users\\Me\\folder\\existing\\src\\tailwind.css',
+        outputCSS: '.\\existing\\unix\\style.css'
+      }`)
+    },
+    test: async () => {
+      await configure({})
+
+      delete require.cache[require.resolve('./ng-tailwind.js')]
+
+      const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
+
+      strictEqual(configJS, 'my/path/to/existing/tailwind.config.js')
+      strictEqual(sourceCSS, 'C:\\Users\\Me\\folder\\existing\\src\\tailwind.css')
+      strictEqual(outputCSS, '.\\existing\\unix\\style.css')
     },
     cleanup: () => {
       deleteNgTailwindJS()
@@ -35,11 +77,52 @@ if (process.platform === 'darwin' || process.platform === 'linux') {
 
       const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
 
-      console.log(configJS, sourceCSS, outputCSS)
-
       strictEqual(configJS, 'tailwind.config.js')
       strictEqual(sourceCSS, 'src/tailwind.css')
       strictEqual(outputCSS, 'src/styles.css')
+    },
+    cleanup: () => {
+      deleteNgTailwindJS()
+    }
+  })
+
+  register('set user-defined paths correctly on unix systems', {
+    test: async () => {
+      await configure({
+        configJS: path.normalize('my/path/to/tailwind.config.js'),
+        sourceCSS: path.normalize('/Users/me/projects/stupid/name/src/tailwind.css'),
+        outputCSS: path.normalize('./windows/sucks.css')
+      })
+
+      const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
+
+      strictEqual(configJS, 'my/path/to/tailwind.config.js')
+      strictEqual(sourceCSS, '/Users/me/projects/stupid/name/src/tailwind.css')
+      strictEqual(outputCSS, 'windows/sucks.css')
+    },
+    cleanup: () => {
+      deleteNgTailwindJS()
+    }
+  })
+
+  register('rewrite paths from existing config correctly on unix systems', {
+    setup: () => {
+      fs.writeFileSync('./ng-tailwind.js', `module.exports = {
+        configJS: 'my/path/to/existing/tailwind.config.js',
+        sourceCSS: '/Users/me/projects/existing/src/tailwind.css',
+        outputCSS: './existing/unix/style.css'
+      }`)
+    },
+    test: async () => {
+      await configure({})
+
+      delete require.cache[require.resolve('./ng-tailwind.js')]
+
+      const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
+
+      strictEqual(configJS, 'my/path/to/existing/tailwind.config.js')
+      strictEqual(sourceCSS, '/Users/me/projects/existing/src/tailwind.css')
+      strictEqual(outputCSS, './existing/unix/style.css')
     },
     cleanup: () => {
       deleteNgTailwindJS()
@@ -85,5 +168,6 @@ async function evaluateTests () {
 }
 
 function deleteNgTailwindJS () {
+  delete require.cache[require.resolve('./ng-tailwind.js')]
   return fs.unlinkSync('./ng-tailwind.js')
 }

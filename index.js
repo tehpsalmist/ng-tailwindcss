@@ -48,15 +48,15 @@ program
     const ngTwConfig = {}
 
     if (args.config) {
-      ngTwConfig.configJS = path.normalize(path.resolve(args.config))
+      ngTwConfig.configJS = path.normalize(args.config)
     }
 
     if (args.source) {
-      ngTwConfig.sourceCSS = path.normalize(path.resolve(args.source))
+      ngTwConfig.sourceCSS = path.normalize(args.source)
     }
 
     if (args.output) {
-      ngTwConfig.outputCSS = path.normalize(path.resolve(args.output))
+      ngTwConfig.outputCSS = path.normalize(args.output)
     }
 
     if ({}.hasOwnProperty.call(args, 'purge') || args.unsetPurge) {
