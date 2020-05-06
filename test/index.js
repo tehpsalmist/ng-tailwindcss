@@ -53,13 +53,15 @@ if (process.platform === 'win32') {
       }`)
     },
     test: async () => {
-      await configure({})
+      await configure({
+        configJS: path.normalize('./new/path/to/tailwind.config.js')
+      })
 
       delete require.cache[require.resolve('./ng-tailwind.js')]
 
       const { configJS, sourceCSS, outputCSS } = require('./ng-tailwind')
 
-      strictEqual(configJS, 'my\\path\\to\\existing\\tailwind.config.js')
+      strictEqual(configJS, 'new\\path\\to\\tailwind.config.js')
       strictEqual(sourceCSS, 'C:\\Users\\Me\\folder\\existing\\src\\tailwind.css')
       strictEqual(outputCSS, '.\\existing\\unix\\style.css')
     },
