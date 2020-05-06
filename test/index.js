@@ -48,8 +48,8 @@ if (process.platform === 'win32') {
     setup: () => {
       fs.writeFileSync('./ng-tailwind.js', `module.exports = {
         configJS: 'my/path/to/existing/tailwind.config.js',
-        sourceCSS: 'C:\\Users\\Me\\folder\\existing\\src\\tailwind.css',
-        outputCSS: '.\\existing\\unix\\style.css'
+        sourceCSS: 'C:\\\\Users\\\\Me\\\\folder\\\\existing\\\\src\\\\tailwind.css',
+        outputCSS: '.\\\\existing\\\\unix\\\\style.css'
       }`)
     },
     test: async () => {
@@ -161,7 +161,7 @@ async function evaluateTests () {
     await run(suite)
   }
 
-  failures.forEach(([d, f]) => console.log(`${d}:`, f))
+  failures.forEach(([d, f]) => console.log(`${d}:\n`, f))
   console.log(`${tests.length - failures.length} / ${tests.length} tests pass!`)
 
   return process.exit(failures.length ? 1 : 0)
