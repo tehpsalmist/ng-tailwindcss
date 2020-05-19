@@ -1,13 +1,15 @@
 # ng-tailwindcss
 ### A CLI tool for integrating Tailwind CSS into Angular-CLI projects with as little pain as possible
 
+**[Read this article](https://medium.com/@tehpsalmist/keeping-the-wind-in-your-wings-6aa49342651) to learn more about how and why this works and how you can use it with other frameworks like React and Next.js.**
+
 > _Core Features:_
 >
-> - PurgeCSS, ready to rock "out of the box", but also fully configurable
+> - PurgeCSS v1.4.2, ready to rock "out of the box", but also fully configurable
 >
-> - Sass support with optional dependency on [node-sass](https://www.npmjs.com/package/node-sass) or [dart-sass](https://www.npmjs.com/package/sass)
+> - [Sass support](#using-sass) with optional dependency on [node-sass](https://www.npmjs.com/package/node-sass) or [dart-sass](https://www.npmjs.com/package/sass)
 >
-> - Defaults reflect Tailwind 1.0.0-stable file naming conventions (ngtw v2.0.0+)
+> - Default configurations reflect Tailwind v1 file naming conventions (such as `tailwind.config.js`)
 >
 > - Angular Workspaces (and other monorepo structures) Support (ngtw v2.2.0+)
 
