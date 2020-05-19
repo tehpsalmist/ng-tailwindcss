@@ -315,6 +315,19 @@ To take advantage of Sass in your `tailwind.(s)css` file, either `node-sass` or 
 
 Once this optional dependency is in place, configure for Sass with `ngtw c --sass`.
 
+If for some reason your dependency tree contains `node-sass` _and_ `dart-sass` and you prefer that `dart-sass` be used to compile your sass, you can edit the ng-tailwind.js file like so:
+
+```js
+module.exports = {
+  // Tailwind Paths
+  ...
+  // Sass
+  sass: 'sass', // possible values: true, false, 'node-sass', 'dart-sass', and 'sass'. ('sass' == 'dart-sass')
+  // PurgeCSS Settings
+  ...
+}
+```
+
 That's all! Keep in mind, this tool does not compile CSS/SCSS from any other files, so you'll still have to configure your `angular.json` for the rest, which is the preferred way to handle those files.
 
 **_A note on how this is implemented:_** _The compiled CSS from your tailwind.scss is stored in a temporary `.css` file that is immediately destroyed once the build is complete. At the moment, there is no way to alter this behavior. If this is not optimal for your situation, please [file an issue](https://github.com/tehpsalmist/ng-tailwindcss/issues/new)._
