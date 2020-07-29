@@ -1,7 +1,7 @@
 # ng-tailwindcss
 ### A CLI tool for integrating Tailwind CSS into Angular-CLI projects with as little pain as possible
 
-**[Read this article](https://medium.com/@tehpsalmist/keeping-the-wind-in-your-wings-6aa49342651) to learn more about how and why this works and how you can use it with other frameworks like React and Next.js.**
+**[Read this article](https://medium.com/@tehpsalmist/keeping-the-wind-in-your-wings-6aa49342651) to learn more about how and why this works. You can also use it with other frameworks like React and Next.js!**
 
 > _Core Features:_
 >
@@ -12,6 +12,10 @@
 > - Default configurations reflect Tailwind v1 file naming conventions (such as `tailwind.config.js`)
 >
 > - Angular Workspaces (and other monorepo structures) Support (ngtw v2.2.0+)
+>
+> - Watch related files using `watchRelatedFiles` property of `ng-tailwind.js` config. This array of paths/globs will be watched for changes and trigger rebuilding of tailwind files.
+>
+> - "Hot reloading" of all watched files, including `ng-tailwind.js`. Any file change or renaming or reconfiguring will automatically be picked up by `ngtw`, no need to kill or restart your dev server! 🚀
 
 ## Why Is This Necessary?
 
@@ -77,6 +81,7 @@ Put all your [tailwind imports](https://tailwindcss.com/docs/installation/#2-add
       configJS: '/Absolute/path/to/whatever-you-named-tailwind-config.js',
       sourceCSS: '/Absolute/path/to/your-tailwind-source.css',
       outputCSS: '/Absolute/path/to/outputted-global-styles.css',
+      watchRelatedFiles: [],
       // Sass
       sass: false,
       // PurgeCSS Settings
@@ -126,6 +131,7 @@ _*Important*: The default config (running_ `ngtw configure` _with no arguments) 
     configJS: './tailwind.config.js',
     sourceCSS: './src/tailwind.css',
     outputCSS: './src/styles.css',
+    watchRelatedFiles: [],
     // Sass
     sass: false,
     // PurgeCSS Settings
@@ -151,6 +157,7 @@ Example:
     configJS: './some-tailwind-config.js',
     sourceCSS: './random/path/you/chose/tailwind.css',
     outputCSS: './way/different/location/of/styles.css'
+    watchRelatedFiles: [],
     // Sass
     sass: false,
     // PurgeCSS Settings
@@ -172,6 +179,7 @@ Example:
     configJS: './tailwind.config.js', // default config value
     sourceCSS: './src/tailwind.css', // default source value
     outputCSS: './src/my-groovy-styles.css' // -o (--output) overrides default
+    watchRelatedFiles: [],
     // Sass
     sass: false,
     // PurgeCSS Settings
@@ -271,6 +279,7 @@ When including PurgeCSS in your Angular/Tailwind magnum opus, there are 3 ways t
       configJS: './tailwind.config.js',
       sourceCSS: './src/tailwind.css',
       outputCSS: './src/styles.css',
+      watchRelatedFiles: [],
       // Sass
       sass: false,
       // PurgeCSS Settings
