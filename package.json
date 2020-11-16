@@ -1,6 +1,6 @@
 {
   "name": "ng-tailwindcss",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "preferGlobal": true,
   "bin": {
     "ngtw": "./index.js"
