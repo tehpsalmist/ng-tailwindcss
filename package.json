@@ -1,6 +1,6 @@
 {
   "name": "ng-tailwindcss",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "preferGlobal": true,
   "bin": {
     "ngtw": "index.js"
@@ -11,7 +11,8 @@
     "test": "standard && node test",
     "tdd": "nodemon test --ignore test/ng-tailwind.js",
     "lint": "standard",
-    "lint:fix": "standard --fix"
+    "lint:fix": "standard --fix",
+    "version": "npx standard-version"
   },
   "repository": {
     "type": "git",
