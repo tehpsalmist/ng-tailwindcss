@@ -32,7 +32,7 @@ program
 program
   .command('configure')
   .alias('c')
-  .description('Configure your tailwind setup using custom arguments or the default setup;\n\tRestart of development server required for changes to take effect')
+  .description('Configure your ng-tailwind setup using custom arguments or the default setup')
   .option('-c, --config <config>', 'relative path to tailwind.config.js file')
   .option('-s, --source <source>', 'relative path to css source file')
   .option('-o, --output <output>', 'relative path to css output file (referenced in angular.json output array)')
