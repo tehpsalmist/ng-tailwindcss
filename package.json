@@ -34,7 +34,7 @@
   "homepage": "https://github.com/tehpsalmist/ng-tailwindcss#readme",
   "dependencies": {
     "chokidar": "^3.5.1",
-    "commander": "^7.2.0",
+    "commander": "^8.0.0",
     "purgecss": "^1.4.2",
     "update-notifier": "^5.1.0"
   },
